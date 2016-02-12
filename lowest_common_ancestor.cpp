@@ -9,21 +9,10 @@
  */
 class Solution {
 public:
-    bool contains(TreeNode* p, TreeNode* q){
-        if(p==NULL)
-            return false;
-        if(p->val==q->val)
-            return true;
-        else if(p->val>q->val)
-            return(contains(p->left,q));
-        else
-            return(contains(p->right,q));
-    }
-
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if( contains(root->left,p) && contains(root->left,q) )
+        if( p->val<root->val && q->val<root->val )
             return lowestCommonAncestor(root->left,p,q);
-        else if( contains(root->right,p) && contains(root->right,q) )
+        else if( p->val>root->val && q->val>root->val )
             return lowestCommonAncestor(root->right,p,q);
         else
             return root;
